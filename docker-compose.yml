@@ -36,5 +36,5 @@ services:
       LOG4J_LOGGER_KAFKA_AUTHORIZER_LOGGER: 'DEBUG, authorizerAppender'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./certs:/certs
+      - ./sslcerts:/certs
       - ./client_ssl.properties:/certs/client_ssl.properties

@@ -21,7 +21,7 @@ add to your /etc/hosts
 
 Generate the required certificates and keystores:
 
-    ./generate-docker-kafka-ssl-certs.sh
+    ./generate-XXX.sh
     
 Run Kafka and Zookeeper
 
