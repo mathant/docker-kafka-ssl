@@ -9,6 +9,9 @@ services:
 
   kafka:
     image: wurstmeister/kafka:1.0.0
+    command: sh -c './scripts/wait-for --timeout=2 zookeeper:2181 -- start-kafka.sh'
+    depends_on:
+        - zookeeper
     ports:
       - target: 9094
         published: 9094
@@ -16,7 +19,6 @@ services:
         mode: host
     environment:
       HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"      
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:SSL
       KAFKA_ADVERTISED_PROTOCOL_NAME: OUTSIDE
       KAFKA_ADVERTISED_HOST_NAME: 'kafka.docker.ssl'
@@ -38,3 +40,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./sslcerts:/certs
       - ./client_ssl.properties:/certs/client_ssl.properties
+      - ./scripts/wait-for:/scripts/wait-for

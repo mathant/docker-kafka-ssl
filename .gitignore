@@ -1,1 +1,4 @@
 sslcerts/*
+
+.idea
+.DS_Store
